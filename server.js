@@ -1,12 +1,12 @@
 const express = require('express');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
+const path = require('path');
 const app = express();
-const port = 3000;
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static('.'));
+app.use(express.static('.')); // Serve images and static files from root
 
 const articles = [
     { title: "Safaricom’s 5G Expands to Rural Kenya", category: "gadgets", summary: "Safaricom’s 5G network now covers 20 counties, boosting connectivity for remote businesses.", image: "safaricom-5g.jpg" },
@@ -23,20 +23,7 @@ const articles = [
     { title: "AI Judiciary System Debuts in Kenya", category: "ai", summary: "Kenya’s courts test an AI tool to speed up case backlogs, sparking debate.", image: "ai-judiciary.jpg" }
 ];
 
-app.post('/api/contact', (req, res) => {
-    const { name, email, message } = req.body;
-    if (!name || !email || !message) {
-        return res.status(400).json({ message: 'All fields are required' });
-    }
-    res.json({ message: `Thanks, ${name}! Your message was sent.` });
-});
-
-app.post('/api/subscribe', (req, res) => {
-    const { email } = req.body;
-    if (!email) return res.status(400).json({ message: 'Email is required' });
-    console.log(`Subscribed: ${email}`);
-    res.json({ message: `Subscribed with ${email}!` });
-});
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html'))); // Serve index.html
 
 app.get('/api/articles', (req, res) => {
     const { category } = req.query;
@@ -46,6 +33,17 @@ app.get('/api/articles', (req, res) => {
     res.json(filtered);
 });
 
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
+app.post('/api/contact', (req, res) => {
+    const { name, email, message } = req.body;
+    if (!name || !email || !message) return res.status(400).json({ message: 'All fields required' });
+    res.json({ message: `Thanks, ${name}! Your message was sent.` });
 });
+
+app.post('/api/subscribe', (req, res) => {
+    const { email } = req.body;
+    if (!email) return res.status(400).json({ message: 'Email required' });
+    res.json({ message: `Subscribed with ${email}!` });
+});
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`Server running at port ${port}`));

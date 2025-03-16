@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tech Fabrizo - Your source for Kenyan tech news, gadgets, AI, and startups.">
+    <title>Tech Fabrizo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav class="top-nav">
+            <div class="logo">Tech Fabrizo</div>
+            <div class="nav-icons">
+                <span class="theme-toggle" onclick="toggleTheme()">☀️</span>
+                <span class="search-icon" onclick="toggleSearch()">🔍</span>
+                <span class="hamburger" onclick="toggleMenu()">☰</span>
+            </div>
+        </nav>
+        <div class="search-bar">
+            <input type="text" placeholder="Search articles...">
+            <button>Search</button>
+        </div>
+        <div class="scroll-progress" id="scroll-progress"></div>
+    </header>
+
+    <!-- Full-Screen Menu -->
+    <div id="full-menu">
+        <a href="#hero">Home</a>
+        <a href="#articles">Articles</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg" id="hero-bg"></div>
+        <div class="hero-content">
+            <h1>Tech Fabrizo</h1>
+            <p>Exploring Kenya’s Tech Revolution</p>
+            <a href="#articles" class="cta">Dive In</a>
+        </div>
+    </section>
+
+    <!-- Featured Carousel -->
+    <section class="featured-carousel">
+        <div class="carousel" id="carousel">
+            <div class="carousel-item">
+                <img src="safaricom-5g.jpg" alt="Safaricom " loading="lazy">
+                <h2>Safaricom Boosts 5G in Nairobi</h2>
+                <p>Kenya’s telecom giant rolls out faster networks.</p>
+            </div>
+            <div class="carousel-item">
+                <img src="ushahidi-ai.jpg" alt="Ushahidi Tool" loading="lazy">
+                <h2>Ushahidi’s New Crisis Tool</h2>
+                <p>Innovative platform aids disaster response.</p>
+            </div>
+            <div class="carousel-item">
+                <img src="mkopa-solar.jpg" alt="M-KOPA Solar" loading="lazy">
+                <h2>M-KOPA Hits Solar Milestone</h2>
+                <p>Green energy transforms rural Kenya.</p>
+            </div>
+        </div>
+        <div class="carousel-nav">
+            <span class="carousel-dot active" onclick="setCarousel(0)"></span>
+            <span class="carousel-dot" onclick="setCarousel(1)"></span>
+            <span class="carousel-dot" onclick="setCarousel(2)"></span>
+        </div>
+    </section>
+
+    <!-- Articles Section -->
+    <section class="articles" id="articles">
+        <h2><span class="spotlight">Spotlight: <span>AI Spotlight</span></span></h2>
+        <div class="filters">
+            <span class="filter active" onclick="filterArticles('all')">All</span>
+            <span class="filter" onclick="filterArticles('startups')">Startups</span>
+            <span class="filter" onclick="filterArticles('ai')">AI</span>
+            <span class="filter" onclick="filterArticles('gadgets')">Gadgets</span>
+        </div>
+        <div class="grid"></div>
+    </section>
+
+    <!-- Share Modal -->
+    <div id="share-modal">
+        <span class="close-modal" onclick="closeShareModal()">✖</span>
+        <h3>Share This Article</h3>
+        <input type="text" value="https://techfabrizo.com/article" readonly>
+        <button onclick="navigator.clipboard.writeText('https://techfabrizo.com/article')">Copy Link</button>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-section">
+            <h3>Trending Now</h3>
+            <ul id="trending">
+                <li>Holographic Phones Drop Now</li>
+                <li>AI Chips Break Limits</li>
+                <li>Drones Rule Skies Quietly</li>
+                <li>Solar Nanotech Sparks Future</li>
+                <li>Emotion Tech Stirs Debate</li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <h3>Subscribe</h3>
+            <input type="email" placeholder="Your email">
+            <button onclick="subscribe()">Subscribe</button>
+        </div>
+    </aside>
+
+    <!-- Newsletter Popup -->
+    <div class="newsletter-popup" id="newsletter-popup">
+        <span class="minimize" onclick="minimizePopup()">—</span>
+        <h3>Stay Updated!</h3>
+        <p>Get the latest Kenyan tech news.</p>
+        <input type="email" placeholder="Enter your email">
+        <button onclick="subscribe()">Join Now</button>
+    </div>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2>Contact Us</h2>
+        <form id="contact-form" onsubmit="submitContact(event)">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send</button>
+            <p id="form-feedback"></p>
+        </form>
+    </section>
+
+    <!-- Back to Top -->
+    <div class="back-to-top" onclick="scrollToTop()">↑</div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Tech Fabrizo. All rights reserved.</p>
+        <p class="easter-egg" onclick="triggerEasterEgg()">Powered by xAI</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
